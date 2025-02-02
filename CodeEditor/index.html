@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Editor</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/4be94e1748.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1><i class="fa-solid fa-code"></i> Code Editor</h1>
+  </header>
+  <div class="container">
+    <div class="left">
+      <label><i class="fa-brands fa-html5"></i> HTML</label>
+      <textarea id="html-code" onkeyup="run()" placeholder="Write your HTML code here..."></textarea>
+      <label><i class="fa-brands fa-css3-alt"></i> CSS</label>
+      <textarea id="css-code" onkeyup="run()" placeholder="Write your CSS code here..."></textarea>
+      <label><i class="fa-brands fa-js"></i> JavaScript</label>
+      <textarea id="js-code" onkeyup="run()" placeholder="Write your JavaScript code here..."></textarea>
+    </div>
+    <div class="right">
+      <label><i class="fa-solid fa-play"></i> Output</label>
+      <iframe id="output"></iframe>
+    </div>
+  </div>
+  <script>
+    function run() {
+      const htmlCode = document.getElementById("html-code").value;
+      const cssCode = document.getElementById("css-code").value;
+      const jsCode = document.getElementById("js-code").value;
+      const output = document.getElementById("output");
+
+      output.contentDocument.body.innerHTML = `${htmlCode}<style>${cssCode}</style>`;
+      output.contentWindow.eval(jsCode);
+    }
+  </script>
+</body>
+</html>
